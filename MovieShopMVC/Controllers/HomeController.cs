@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Infrastructure.Services;
+using Microsoft.AspNetCore.Mvc;
 using MovieShopMVC.Models;
 using System.Diagnostics;
 
@@ -18,7 +19,16 @@ namespace MovieShopMVC.Controllers
         public IActionResult Index()
         {
             // go to database and get the data
-            return View();
+
+            var movieService = new MovieService();
+            var movies = movieService.GetTop30GrossingMovies();
+
+            // 3 ways we can send the data from controller/action method to views
+            // ViewBag
+            // ViewData
+            // *** Strongly Typed  Models **
+
+            return View(movies);
         }
 
        // http://movieshop.com/home/privacy
