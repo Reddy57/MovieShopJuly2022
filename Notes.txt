@@ -1,0 +1,23 @@
+MVC
+
+Model => Data representation for the view
+
+View => HTML + CSS + JS + Razor 
+
+Controller => Movies
+
+Http Requests
+
+GET => 
+PUT => 
+POST => 
+DELETE => 
+
+
+GET http://movieshop.com/movies/details/2
+
+
+
+
+
+
