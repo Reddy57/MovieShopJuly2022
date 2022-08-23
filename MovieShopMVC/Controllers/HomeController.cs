@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace MovieShopMVC.Controllers
 {
-    // Controller
+    // Controllers => Services (BL) => Repositories => Database using EF Core or Dapper or both
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -17,6 +17,7 @@ namespace MovieShopMVC.Controllers
         // Action methods
         public IActionResult Index()
         {
+            // go to database and get the data
             return View();
         }
 

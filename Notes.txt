@@ -18,6 +18,11 @@ GET http://movieshop.com/movies/details/2
 
 
 
+You create entites based on requirement of databsae tables
+you create models based on requireemnt of View
+
+
+
 
 
 

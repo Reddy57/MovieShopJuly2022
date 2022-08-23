@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Contracts\Repositories\" />
-    <Folder Include="Contracts\Services\" />
-    <Folder Include="Entities\" />
-    <Folder Include="Models\" />
     <Folder Include="Exceptions\" />
   </ItemGroup>
 
