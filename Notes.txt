@@ -33,4 +33,7 @@ Method(int x, IMovieService service);
 Method(5, new MovieService() )
 
 
+Partial Views are useful so that we can re use them across multiple views
+
+
 
