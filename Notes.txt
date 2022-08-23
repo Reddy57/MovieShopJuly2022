@@ -22,7 +22,15 @@ You create entites based on requirement of databsae tables
 you create models based on requireemnt of View
 
 
+HomeController controller = new HomeController(new Logger(), new MovieService());
 
+controller.Index();
+
+
+Method(int x, IMovieService service);
+
+
+Method(5, new MovieService() )
 
 
 

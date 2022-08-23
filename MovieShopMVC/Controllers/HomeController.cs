@@ -1,4 +1,5 @@
-﻿using Infrastructure.Services;
+﻿using ApplicationCore.Contracts.Services;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 using MovieShopMVC.Models;
 using System.Diagnostics;
@@ -9,19 +10,23 @@ namespace MovieShopMVC.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IMovieService _movieService;
+        public HomeController(ILogger<HomeController> logger, IMovieService movieService)
         {
             _logger = logger;
+            _movieService = movieService;
         }
 
         // Action methods
         public IActionResult Index()
         {
-            // go to database and get the data
 
-            var movieService = new MovieService();
-            var movies = movieService.GetTop30GrossingMovies();
+            // go to database and get the data
+            // tightly coupled code
+            // losely coupled code
+            // 
+
+            var movies = _movieService.GetTop30GrossingMovies();
 
             // 3 ways we can send the data from controller/action method to views
             // ViewBag
@@ -31,7 +36,7 @@ namespace MovieShopMVC.Controllers
             return View(movies);
         }
 
-       // http://movieshop.com/home/privacy
+        // http://movieshop.com/home/privacy
         public IActionResult Privacy()
         {
             return View();
