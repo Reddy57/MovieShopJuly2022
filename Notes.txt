@@ -51,4 +51,7 @@ dotnet tool update --global dotnet-ef
 7. DbSet represents your database table, create an entity class that represents your table
 8. Migrations - Create Initial Migration dotnet ef migrations add InitialMigration  -p ../Infrastructure/Infrastructure.csproj
 9. Apply the Migration dotnet ef database update
+10. TO make any schema changes, we can use 2 approaches
+    1. Data Annotations => using System.ComponentModel.DataAnnotations;
+    2. Fluent API => much more powerful and has more options
 
