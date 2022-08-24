@@ -46,4 +46,9 @@ dotnet tool update --global dotnet-ef
 3. Install Microsoft.EntityFrameworkCore.Design in MVC
 4. Create a class inherits from DbContext => represents your Database
 5. Create a connection string which EF Core is going to use to access the database
-    should include server name, Database Name and any credentials	
+    should include server name, Database Name and any credentials
+6. Read the connection string from appsettings.json and inject into MovieShopDbContext
+7. DbSet represents your database table, create an entity class that represents your table
+8. Migrations - Create Initial Migration dotnet ef migrations add InitialMigration  -p ../Infrastructure/Infrastructure.csproj
+9. Apply the Migration dotnet ef database update
+

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ApplicationCore.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,10 @@ namespace Infrastructure.Data
         {
 
         }
+
+        // Dbsets are properties of DbContext class
+
+        // Movies Table access
+        public DbSet<Movie> Movies { get; set; } 
     }
 }
