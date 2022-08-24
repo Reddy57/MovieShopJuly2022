@@ -13,8 +13,7 @@ namespace ApplicationCore.Entities
 
         [MaxLength(256)]
         public string Title { get; set; } = null!;
-
-     
+          
         public string Overview { get; set; } = null!;
         public string Tagline { get; set; } = null!;
         public decimal? Budget { get; set; }
@@ -35,5 +34,9 @@ namespace ApplicationCore.Entities
         public string? CreatedBy { get; set; }
 
         public decimal? Rating { get; set; }
+
+        // Navigations
+        public ICollection<MovieGenre> GenresOfMovie { get; set; }
+        public ICollection<Trailer> Trailers { get; set; }
     }
 }

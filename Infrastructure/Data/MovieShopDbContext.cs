@@ -20,12 +20,22 @@ namespace Infrastructure.Data
 
         // Movies Table access
         public DbSet<Movie> Movies { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+        public DbSet<MovieGenre> MovieGenres { get; set; }
+        public DbSet<Trailer> Trailers { get; set; }
 
         // override the method called OnModelCreating for Fluent API
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Movie>(ConfigureMovie);
+            modelBuilder.Entity<MovieGenre>(ConfigureMovieGenre);
+        }
+
+        private void ConfigureMovieGenre(EntityTypeBuilder<MovieGenre> builder)
+        {
+            builder.ToTable("MovieGenres");
+            builder.HasKey(mg => new { mg.MovieId, mg.GenreId });
         }
 
         private void ConfigureMovie(EntityTypeBuilder<Movie> builder)
