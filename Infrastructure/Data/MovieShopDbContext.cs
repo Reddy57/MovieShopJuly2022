@@ -24,12 +24,20 @@ namespace Infrastructure.Data
         public DbSet<MovieGenre> MovieGenres { get; set; }
         public DbSet<Trailer> Trailers { get; set; }
 
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
+
         // override the method called OnModelCreating for Fluent API
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Movie>(ConfigureMovie);
             modelBuilder.Entity<MovieGenre>(ConfigureMovieGenre);
+            modelBuilder.Entity<User>(ConfigureUser);
+            modelBuilder.Entity<Role>(ConfigureRole);
+            modelBuilder.Entity<UserRole>(ConfigureUserRole);
+
         }
 
         private void ConfigureMovieGenre(EntityTypeBuilder<MovieGenre> builder)
@@ -67,6 +75,30 @@ namespace Infrastructure.Data
             builder.HasIndex(m => m.Budget);
 
 
+        }
+
+        private void ConfigureUserRole(EntityTypeBuilder<UserRole> builder)
+        {
+            builder.ToTable("UserRoles");
+            builder.HasKey(x => new { x.RoleId, x.UserId });
+        }
+
+        private void ConfigureRole(EntityTypeBuilder<Role> builder)
+        {
+            builder.Property(r => r.Name).HasMaxLength(64);
+        }
+
+        private void ConfigureUser(EntityTypeBuilder<User> builder)
+        {
+            builder.HasIndex(u => u.Email).IsUnique();
+            builder.Property(u => u.Email).HasMaxLength(256);
+            builder.Property(u => u.FirstName).HasMaxLength(128);
+            builder.Property(u => u.LastName).HasMaxLength(128);
+            builder.Property(u => u.HashedPassword).HasMaxLength(1024);
+            builder.Property(u => u.PhoneNumber).HasMaxLength(64);
+            builder.Property(u => u.Salt).HasMaxLength(1024);
+            builder.Property(u => u.ProfilePictureUrl).HasMaxLength(4096);
+            builder.Property(u => u.IsLocked).HasDefaultValue(false);
         }
 
     }
