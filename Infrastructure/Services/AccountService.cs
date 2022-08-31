@@ -43,6 +43,7 @@ namespace Infrastructure.Services
             {
                 FirstName = model.FirstName,
                 LastName = model.LastName,
+                Email = model.Email,
                 Salt = salt,
                 HashedPassword = hashedPassword,
                 DateOfBirth = model.DateOfBirth
@@ -52,9 +53,29 @@ namespace Infrastructure.Services
             return createdUser.Id;
         }
 
-        public Task<UserLoginSuccessModel> ValidateUser(UserLoginModel model)
+        public async Task<UserLoginSuccessModel> ValidateUser(UserLoginModel model)
         {
-            throw new NotImplementedException();
+            var user = await _userRepository.GetUserByEmail(model.Email);
+            if (user == null)
+            {
+                throw new Exception("Email does not exixts, try to register first");
+            }
+
+            var hashedPassword = GetHashedPassword(model.Password, user.Salt);
+
+            if (user.HashedPassword == hashedPassword)
+            {
+                var userLoginSuccessModel = new UserLoginSuccessModel
+                {
+                    Id = user.Id, 
+                    Email = user.Email,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName
+                };
+            return userLoginSuccessModel;
+            }
+
+            return null;
         }
 
 
