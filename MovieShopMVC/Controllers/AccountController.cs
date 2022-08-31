@@ -24,7 +24,7 @@ namespace MovieShopMVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(UserRegisterModel model, string FIRSTNAME, string firstname, string xyz)
+        public async Task<IActionResult> Register(UserRegisterModel model)
         {
             return View();
         }

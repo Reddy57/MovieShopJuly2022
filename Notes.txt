@@ -70,3 +70,11 @@ dotnet tool update --global dotnet-ef
  Login
  select * from Users where email = abc@abc.com
  U1 abc@abc.com         (Pas##4HKLtt +  adfafafdafdaf) Hashing - Pdbk/Bcrypt  => fhddghdgdtrhyrety456456y45 == fhddghdgdtrhyrety456456y45
+
+
+ Never ever create your own hashing algorithm
+ always use Indutry tried and tested hashing algorithm
+
+ Pbkdf2
+ Bcrypt
+
