@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.Security.Cryptography;
+using ApplicationCore.Entities;
 
 namespace Infrastructure.Services
 {
@@ -31,10 +32,24 @@ namespace Infrastructure.Services
             }
 
             // create a random salt
+
+            var salt = GetRandomSalt();
+
             // hash the password with the salt created in above step
+            var hashedPassword = GetHashedPassword(model.Password, salt);
+
             // create new User entity object and save it to database using EF Core SaveChanges method
+            var dbUser = new User
+            {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Salt = salt,
+                HashedPassword = hashedPassword,
+                DateOfBirth = model.DateOfBirth
+            };
 
-
+            var createdUser = await _userRepository.AddUser(dbUser);
+            return createdUser.Id;
         }
 
         public Task<UserLoginSuccessModel> ValidateUser(UserLoginModel model)
